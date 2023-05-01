@@ -52,27 +52,31 @@ namespace delegatesAndEvents
             // create a class object
             Race round1 = new Race();
             // register with the footRace event
+            round1.RaceOver += footRace_raceOver;
 
             // trigger the event
-
+            round1.Racing(20, 3);
             // register with the carRace event
-
+            round1.RaceOver -= footRace_raceOver;
+            round1.RaceOver += carRace_raceOver;
             //trigger the event
-
+            round1.Racing(20,3);
             // register a bike race event using a lambda expression
-
+            round1.RaceOver -= carRace_raceOver;
+            //round1.RaceOver += bikeRace_raceOver;
+            round1.RaceOver += (winner) => Console.WriteLine($"Biker number {winner} is the bike race winner");
             // trigger the event
-
+            round1.Racing(20,3);
         }
 
         // event handlers
-        public static void carRace(int winner)
+        public static void carRace_raceOver(int winner)
         {
-            Console.WriteLine($"Car number {winner} is the winner.");
+            Console.WriteLine($"Car number {winner} is the car race winner.");
         }
-        public static void footRace(int winner)
+        public static void footRace_raceOver(int winner)
         {
-            Console.WriteLine($"Racer number {winner} is the winner.");
+            Console.WriteLine($"Runner number {winner} is the foot race winner.");
         }
     }
 }

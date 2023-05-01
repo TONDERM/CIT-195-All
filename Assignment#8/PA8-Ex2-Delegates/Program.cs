@@ -14,11 +14,11 @@
         public void GetSmaller(double a, double b)
         {
             if (a < b)
-                Console.WriteLine($" {a} is smaller than {b}");
+                Console.WriteLine($"{a} is less than {b}");
             else if (b < a)
-                Console.WriteLine($" {b} is smaller than {a}");
+                Console.WriteLine($"{a} is greater than {b}");
             else
-                Console.WriteLine($" {b} is equal to {a}");
+                Console.WriteLine($"{a} is equal to {b}");
         }
         static void Main(string[] args)
         {
@@ -27,18 +27,15 @@
             Random r = new Random();
             double num1 = Math.Round(r.NextDouble() * 100);
             double num2 = Math.Round(r.NextDouble() * 100);
-            //Console.WriteLine($" {num1} + {num2} = {answer.GetSum(num1, num2)}");
-            //Console.WriteLine($" {num1} + {num2} = {answer.GetProduct(num1, num2)}");
-            //answer.GetSmaller(num1, num2);
 
             Action<double, double> numList = answer.GetSmaller;
             numList(num1, num2);
 
             Func<double, double, double> result = answer.GetSum;
-            Console.WriteLine($"adding these numbers = {result(num1, num2)}");
+            Console.WriteLine($"{num1} + {num2} = {result(num1, num2)}");
 
             Prod results  = new Prod(answer.GetProduct);
-            Console.WriteLine($"multiplying these = {results(num1,num2)}");
+            Console.WriteLine($"{num1} * {num2} = {results(num1,num2)}");
 
         }
     }

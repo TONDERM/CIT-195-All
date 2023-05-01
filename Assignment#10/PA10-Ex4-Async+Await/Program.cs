@@ -81,7 +81,7 @@ namespace Assignment10Ex4
                 
             }
             throw new InvalidOperationException("Blahhh");
-            await Task.Delay(1000);
+            //await Task.Delay(1000);
             Console.WriteLine("Arrived at work");
             return new Drive();
         }

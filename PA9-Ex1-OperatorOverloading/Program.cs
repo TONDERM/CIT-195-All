@@ -44,9 +44,10 @@
             return num;
         }
 
-        public static Calculator operator -(Calculator num)
+        public static Calculator operator -(Calculator num1, Calculator num2)
         {
-            num.number = -num.number;
+            Calculator num = new Calculator();
+            num.number = num1.number - num2.number;
             return num;
         }
 
@@ -106,10 +107,9 @@
 
             for (int i = 0; i < numbers.Length; i++)
             {
-                numToSub = numbers[i];
-               
-                Console.Write($"Negation value of {numToSub.number} is {-numToSub.number}");
-      
+                Calculator n3 = numbers[i] - numToSub;
+
+                Console.Write($" {numbers[i].number} - {numToSub.number} = {n3.number}");
                 Console.WriteLine();
             }
 

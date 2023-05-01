@@ -62,7 +62,6 @@ public class Program
             //Each group has a inner collection you can access and display         
             foreach (StudentGPA s in groupedGPA)
             {
-                //Console.WriteLine("GPA: " + s.GPA);
                 Console.WriteLine("Student ID: " + s.StudentID);
             }
             Console.WriteLine();
