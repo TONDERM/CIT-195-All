@@ -25,6 +25,17 @@ namespace Customers_Ch25_PA_11_
         public MainPage()
         {
             this.InitializeComponent();
+
+            List<string> titles = new List<string>
+            {
+                "Mr", "Mrs", "Ms", "Miss"
+            };
+
+            this.title.ItemsSource = titles;
+            this.cTitle.ItemsSource = titles;
+            ViewModel viewModel = new ViewModel();
+            this.DataContext = viewModel;
+
         }
 
         private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
