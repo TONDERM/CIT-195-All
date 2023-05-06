@@ -1,40 +1,42 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Notes.Models;
-
-internal class AllNotes
+namespace Notes.Models
 {
-    public ObservableCollection<Note> Notes { get; set; } = new ObservableCollection<Note>();
 
-    public AllNotes() =>
-        LoadNotes();
-
-    public void LoadNotes()
+    internal class AllNotes
     {
-        Notes.Clear();
+        public ObservableCollection<Note> Notes { get; set; } = new ObservableCollection<Note>();
 
-        // Get the folder where the notes are stored.
-        string appDataPath = FileSystem.AppDataDirectory;
+        public AllNotes() =>
+            LoadNotes();
 
-        // Use Linq extensions to load the *.notes.txt files.
-        IEnumerable<Note> notes = Directory
+        public void LoadNotes()
+        {
+            Notes.Clear();
 
-                                    // Select the file names from the directory
-                                    .EnumerateFiles(appDataPath, "*.notes.txt")
+            // Get the folder where the notes are stored.
+            string appDataPath = FileSystem.AppDataDirectory;
 
-                                    // Each file name is used to create a new Note
-                                    .Select(filename => new Note()
-                                    {
-                                        Filename = filename,
-                                        Text = File.ReadAllText(filename),
-                                        Date = File.GetCreationTime(filename)
-                                    })
+            // Use Linq extensions to load the *.notes.txt files.
+            IEnumerable<Note> notes = Directory
 
-                                    // With the final collection of notes, order them by date
-                                    .OrderBy(note => note.Date);
+                                        // Select the file names from the directory
+                                        .EnumerateFiles(appDataPath, "*.notes.txt")
 
-        // Add each note into the ObservableCollection
-        foreach (Note note in notes)
-            Notes.Add(note);
+                                        // Each file name is used to create a new Note
+                                        .Select(filename => new Note()
+                                        {
+                                            Filename = filename,
+                                            Text = File.ReadAllText(filename),
+                                            Date = File.GetCreationTime(filename)
+                                        })
+
+                                        // With the final collection of notes, order them by date
+                                        .OrderBy(note => note.Date);
+
+            // Add each note into the ObservableCollection
+            foreach (Note note in notes)
+                Notes.Add(note);
+        }
     }
 }
