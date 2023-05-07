@@ -27,10 +27,11 @@
             return num;
         }
 
-        public static Log operator -(Log num)
+        public static Log operator -(Log num1, Log num2)
         {
-            num.Hours = -num.Hours;
-            return num;
+            Log num3 = new Log();
+            num3.Hours = num1.Hours - num2.Hours;
+            return num3;
         }
 
         // overloaded operator > and operator <

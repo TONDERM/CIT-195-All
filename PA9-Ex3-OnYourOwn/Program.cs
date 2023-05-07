@@ -26,11 +26,13 @@ namespace Capitalism
             return afford;
         }
 
-        public static Price operator /(Price cost, Price cash)
+        public static Price operator *(Price cost, Price cash)
         {
-            Price remainder = new Price();
-            remainder.number = cost.number / cash.number;
-            return remainder;
+            Price cashDouble = new Price();
+            cashDouble.number = cash.number * 2;
+            Price enough = new Price();
+            enough.number = cashDouble.number - cost.number;
+            return enough;
         }
 
         public static Price operator -(Price cost, Price cash)
@@ -64,7 +66,7 @@ namespace Capitalism
             else
                 Console.WriteLine($"No you don't. :(");
 
-
+            Console.WriteLine();
             Console.WriteLine("Would you have money left over?");
             Console.WriteLine("--------------------------------------------------------------------------");
             Price num = new Price();
@@ -74,7 +76,15 @@ namespace Capitalism
                 Console.WriteLine($"No. You would owe ${num.number * -1}");
             else
                 Console.WriteLine($"Yes! You would have ${num.number} left over");
-                    
+
+            Console.WriteLine();
+            Console.WriteLine("What if we double your cash?");
+            Console.WriteLine("--------------------------------------------------------------------------");
+            Price num2 = new Price();
+            num2.number = cash.number * 2;
+            Console.WriteLine($"You're new cash amount is {num2.number}");
+            
+
 
         }
     }
